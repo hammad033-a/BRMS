@@ -1,0 +1,86 @@
+[
+  {
+    "id": "store_hks",
+    "storeName": "HKs",
+    "ownerName": "Hammad",
+    "email": "hkhamood184@gmail.com",
+    "phone": "hkhamood184@gmail.com",
+    "address": "Attock City",
+    "description": "Watches store",
+    "ownerAddress": "0x6db22146a6351f78cd4e5a0f14ed3a3760cc086a",
+    "products": [
+      {
+        "_id": "hks_watch_1",
+        "name": "Rolex Watch",
+        "description": "Luxury watch for men",
+        "price": "0.5",
+        "category": "Watches",
+        "image": "https://via.placeholder.com/300x200/4db8ff/ffffff?text=Rolex+Watch",
+        "createdAt": "2025-07-05T13:12:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "store_ans",
+    "storeName": "ANS",
+    "ownerName": "Arjah",
+    "email": "arjah2703@gmail.com",
+    "phone": "03299935900",
+    "address": "FatehJang, Attock City",
+    "description": "Custom Nails",
+    "ownerAddress": "0x1234567890abcdef",
+    "products": [
+      {
+        "_id": "ans_nail_1",
+        "name": "Redish Glitter",
+        "description": "New Customized Long Nails with Shinny Glitter",
+        "price": "0.0015",
+        "category": "Nail",
+        "image": "https://via.placeholder.com/300x200/ff4d4d/ffffff?text=Redish+Glitter",
+        "createdAt": "2025-07-08T18:55:02.751Z"
+      }
+    ]
+  },
+  {
+    "id": "store_outfitters",
+    "storeName": "Outfitters",
+    "ownerName": "Ali",
+    "email": "ali@outfitters.com",
+    "phone": "03001234567",
+    "address": "Islamabad",
+    "description": "Clothing store",
+    "ownerAddress": "0xabcdef1234567890",
+    "products": [
+      {
+        "_id": "outfitters_hoodie_1",
+        "name": "Hoodie",
+        "description": "Warm and stylish hoodie",
+        "price": "0.02",
+        "category": "Clothing",
+        "image": "https://via.placeholder.com/300x200/333333/ffffff?text=Hoodie",
+        "createdAt": "2025-07-10T10:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "store_abc",
+    "storeName": "ABC Store",
+    "ownerName": "Sara",
+    "email": "sara@abcstore.com",
+    "phone": "03111222333",
+    "address": "Lahore",
+    "description": "General store",
+    "ownerAddress": "0x9876543210fedcba",
+    "products": [
+      {
+        "_id": "abc_product_1",
+        "name": "Sample Product",
+        "description": "A sample product for ABC Store",
+        "price": "0.005",
+        "category": "General",
+        "image": "https://via.placeholder.com/300x200/00cc99/ffffff?text=Sample+Product",
+        "createdAt": "2025-07-11T12:00:00.000Z"
+      }
+    ]
+  }
+]
