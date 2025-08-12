@@ -392,6 +392,7 @@ const ProductDetails = () => {
             <div style={glassCardStyle}>
               {/* Product Image Section */}
               <div style={{ flex: 1, minWidth: 260, maxWidth: 340, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+<<<<<<< HEAD
                 {(Array.isArray(product.images) && product.images.length > 0) ? (
                   <>
                     <img
@@ -443,6 +444,89 @@ const ProductDetails = () => {
                 ) : product.image ? (
                   <img src={product.image} alt={product.name} style={zoomImageStyle} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.18)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'} />
                 ) : null}
+=======
+                {(() => {
+                  const candidates = [];
+                  const pushIfString = (v) => { if (typeof v === 'string' && v.trim()) candidates.push(v); };
+                  const addFromArrayField = (arrLike) => {
+                    if (!arrLike) return;
+                    const arr = Array.isArray(arrLike) ? arrLike : [arrLike];
+                    for (const it of arr) {
+                      if (typeof it === 'string') pushIfString(it);
+                      else if (it && typeof it === 'object') pushIfString(it.url || it.secure_url || it.src || it.image || it.imageUrl || it.imageURL || it.image_url || it.path || it.dataUrl || it.base64 || it.data);
+                    }
+                  };
+                  addFromArrayField(product.images);
+                  addFromArrayField(product.pictures);
+                  addFromArrayField(product.photos);
+                  addFromArrayField(product.gallery);
+                  addFromArrayField(product.media);
+                  addFromArrayField(product.thumbnails);
+                  for (const key of ['image', 'imageUrl', 'imageURL', 'image_url', 'thumbnail', 'photo', 'picture', 'img', 'url', 'cover', 'coverUrl']) pushIfString(product && product[key]);
+                  const normalizeUrl = (u) => {
+                    if (!u || typeof u !== 'string') return '';
+                    const t = u.trim();
+                    if (t.startsWith('ipfs://')) return `https://ipfs.io/ipfs/${t.replace('ipfs://', '')}`;
+                    if (/^(Qm[1-9A-HJ-NP-Za-km-z]{44}|bafy[1-9A-HJ-NP-Za-km-z]{50,})$/.test(t)) return `https://ipfs.io/ipfs/${t}`;
+                    return t;
+                  };
+                  const imgs = candidates.map(normalizeUrl);
+                  const primary = (typeof currentImage === 'number' && imgs[currentImage]) ? imgs[currentImage] : (imgs[0]);
+                  if (primary) {
+                    return (
+                      <>
+                        <img
+                          src={primary}
+                          alt={product.name}
+                          style={zoomImageStyle}
+                          onMouseOver={e => e.currentTarget.style.transform = 'scale(1.18)'}
+                          onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+                          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/340x340?text=No+Image'; }}
+                        />
+                        {imgs.length > 1 && (
+                          <>
+                            {/* Left Arrow */}
+                            <button
+                              onClick={e => { e.stopPropagation(); setCurrentImage((currentImage - 1 + imgs.length) % imgs.length); }}
+                              style={{
+                                position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', background: 'rgba(30,30,30,0.25)', border: 'none', borderRadius: '50%', width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 2, transition: 'background 0.2s',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
+                                outline: 'none',
+                                color: '#fff',
+                                fontSize: 22,
+                                opacity: 0.7
+                              }}
+                              onMouseOver={e => e.currentTarget.style.background = 'rgba(30,30,30,0.45)'}
+                              onMouseOut={e => e.currentTarget.style.background = 'rgba(30,30,30,0.25)'}
+                              aria-label="Previous image"
+                            >
+                              &#8592;
+                            </button>
+                            {/* Right Arrow */}
+                            <button
+                              onClick={e => { e.stopPropagation(); setCurrentImage((currentImage + 1) % imgs.length); }}
+                              style={{
+                                position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', background: 'rgba(30,30,30,0.25)', border: 'none', borderRadius: '50%', width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 2, transition: 'background 0.2s',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
+                                outline: 'none',
+                                color: '#fff',
+                                fontSize: 22,
+                                opacity: 0.7
+                              }}
+                              onMouseOver={e => e.currentTarget.style.background = 'rgba(30,30,30,0.45)'}
+                              onMouseOut={e => e.currentTarget.style.background = 'rgba(30,30,30,0.25)'}
+                              aria-label="Next image"
+                            >
+                              &#8594;
+                            </button>
+                          </>
+                        )}
+                      </>
+                    );
+                  }
+                  return null;
+                })()}
+>>>>>>> 7e31841 (Initial project upload)
               </div>
               <div style={detailsStyle}>
                 <Header as="h2" style={{ marginBottom: 0, color: '#fff' }}>

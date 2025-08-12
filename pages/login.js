@@ -103,14 +103,27 @@ const Login = () => {
       // Store the account in localStorage
       localStorage.setItem('metamaskConnected', 'true');
       localStorage.setItem('userAddress', connectedAccount);
+<<<<<<< HEAD
       
       setSuccess('Successfully connected to MetaMask!');
       
+=======
+      // Ensure store-owner session is cleared so Manage My Store stays hidden for wallet-only users
+      localStorage.removeItem('storeOwnerEmail');
+      localStorage.removeItem('storeId');
+
+      setSuccess('Successfully connected to MetaMask!');
+
+>>>>>>> 7e31841 (Initial project upload)
       // Redirect after success animation
       setTimeout(() => {
         router.push('/dashboard');
       }, 2500);
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 7e31841 (Initial project upload)
     } catch (err) {
       console.error('Error connecting to MetaMask:', err);
       setError(err.message || 'Failed to connect to MetaMask. Please try again.');

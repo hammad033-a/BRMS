@@ -200,6 +200,7 @@ const StoreProducts = () => {
                             background: 'transparent'
                           }}
                         >
+<<<<<<< HEAD
                           {(Array.isArray(product.images) && product.images.length > 0) ? (
                             <motion.img
                               src={product.images[0]}
@@ -217,6 +218,46 @@ const StoreProducts = () => {
                               transition={{ type: 'spring', stiffness: 200 }}
                             />
                           ) : null}
+=======
+                          {(() => {
+                            const candidates = [];
+                            const pushIfString = (v) => { if (typeof v === 'string' && v.trim()) candidates.push(v); };
+                            const addFromArrayField = (arrLike) => {
+                              if (!arrLike) return;
+                              const arr = Array.isArray(arrLike) ? arrLike : [arrLike];
+                              for (const it of arr) {
+                                if (typeof it === 'string') pushIfString(it);
+                                else if (it && typeof it === 'object') pushIfString(it.url || it.secure_url || it.src || it.image || it.imageUrl || it.imageURL || it.image_url || it.path || it.dataUrl || it.base64 || it.data);
+                              }
+                            };
+                            addFromArrayField(product.images);
+                            addFromArrayField(product.pictures);
+                            addFromArrayField(product.photos);
+                            addFromArrayField(product.gallery);
+                            addFromArrayField(product.media);
+                            addFromArrayField(product.thumbnails);
+                            for (const key of ['image', 'imageUrl', 'imageURL', 'image_url', 'thumbnail', 'photo', 'picture', 'img', 'url', 'cover', 'coverUrl']) pushIfString(product && product[key]);
+                            const normalizeUrl = (u) => {
+                              if (!u || typeof u !== 'string') return '';
+                              const t = u.trim();
+                              if (t.startsWith('ipfs://')) return `https://ipfs.io/ipfs/${t.replace('ipfs://', '')}`;
+                              if (/^(Qm[1-9A-HJ-NP-Za-km-z]{44}|bafy[1-9A-HJ-NP-Za-km-z]{50,})$/.test(t)) return `https://ipfs.io/ipfs/${t}`;
+                              return t;
+                            };
+                            const imgSrc = normalizeUrl(candidates[0]);
+                            const placeholder = `https://via.placeholder.com/350x220?text=${encodeURIComponent((product.name || 'No Image').slice(0,20))}`;
+                            return (
+                              <motion.img
+                                src={imgSrc || placeholder}
+                                alt={product.name}
+                                style={{ width: '100%', height: 220, objectFit: 'cover', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}
+                                whileHover={{ scale: 1.04 }}
+                                transition={{ type: 'spring', stiffness: 200 }}
+                                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholder; }}
+                              />
+                            );
+                          })()}
+>>>>>>> 7e31841 (Initial project upload)
                           <Card.Content>
                             <Card.Header style={{ color: 'white', fontWeight: 'bold' }}>{product.name}</Card.Header>
                             <Card.Meta style={{ color: '#eee' }}>{product.category}</Card.Meta>

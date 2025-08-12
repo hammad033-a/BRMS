@@ -31,7 +31,11 @@ export default props => {
                     <meta name="description" content="A decentralized platform for transparent and immutable product reviews" />
                     <link
                         rel="stylesheet"
+<<<<<<< HEAD
                         href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+=======
+                        href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+>>>>>>> 7e31841 (Initial project upload)
                     />
                     <style jsx global>{`
                         body {

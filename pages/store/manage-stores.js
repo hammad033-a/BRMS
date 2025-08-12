@@ -381,12 +381,16 @@ const ManageStores = () => {
           {/* MetaMaskManager removed */}
           {/* <MetaMaskManager /> */}
           
+<<<<<<< HEAD
           {!isMetaMaskConnected && (
             <Message warning>
               <Message.Header>MetaMask Required</Message.Header>
               <p>Please connect your MetaMask wallet to manage your stores.</p>
             </Message>
           )}
+=======
+          {/* MetaMask is not required for managing stores via email/password. */}
+>>>>>>> 7e31841 (Initial project upload)
 
           {error && (
             <Message negative>
@@ -402,8 +406,12 @@ const ManageStores = () => {
             </Message>
           )}
 
+<<<<<<< HEAD
           {isMetaMaskConnected && (
             <div>
+=======
+          <div>
+>>>>>>> 7e31841 (Initial project upload)
               <Header as="h2" style={{ textAlign: 'center', fontSize: '2.2em', color: 'white', marginBottom: '1em', marginTop: '1em', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <span style={{ display: 'inline-block', marginRight: '0.5em', marginBottom: '0.5em' }}>
                   {/* 3D animated logo in header */}
@@ -497,11 +505,41 @@ const ManageStores = () => {
                                   }}
                                 >
                                   <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
+<<<<<<< HEAD
                                     {product.image ? (
                                       <img src={product.image} alt={product.name} style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 12 }} />
                                     ) : (
                                       <Icon name="cube" size="large" />
                                     )}
+=======
+                                    {(() => {
+                                      // Collect possible image sources in a robust way
+                                      const candidates = [];
+                                      const pushIfString = (v) => { if (typeof v === 'string' && v.trim()) candidates.push(v); };
+                                      // Handle array or single string in `images`
+                                      if (Array.isArray(product.images)) {
+                                        for (const it of product.images) {
+                                          if (typeof it === 'string') {
+                                            pushIfString(it);
+                                          } else if (it && typeof it === 'object') {
+                                            // Common keys for various uploaders (Cloudinary, file readers, etc.)
+                                            pushIfString(it.url || it.secure_url || it.src || it.image || it.imageUrl || it.imageURL || it.image_url || it.path || it.dataUrl || it.data || it.base64);
+                                          }
+                                        }
+                                      } else if (typeof product.images === 'string') {
+                                        pushIfString(product.images);
+                                      }
+                                      // Also check common singular fields
+                                      const singularFields = ['image', 'imageUrl', 'imageURL', 'image_url', 'thumbnail', 'photo', 'picture', 'img', 'url'];
+                                      for (const key of singularFields) pushIfString(product && product[key]);
+                                      const imgSrc = candidates[0];
+                                      return imgSrc ? (
+                                        <img src={imgSrc} alt={product.name} style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 12 }} />
+                                      ) : (
+                                        <Icon name="image outline" size="large" />
+                                      );
+                                    })()}
+>>>>>>> 7e31841 (Initial project upload)
                                     <div>
                                       <div style={{ fontWeight: 'bold', color: 'white' }}>{product.name}</div>
                                       <div style={{ color: '#ccc' }}>{product.category}</div>
@@ -687,7 +725,10 @@ const ManageStores = () => {
                 </Modal.Actions>
               </Modal>
             </div>
+<<<<<<< HEAD
           )}
+=======
+>>>>>>> 7e31841 (Initial project upload)
         </Segment>
 
         {/* Register Store Modal */}

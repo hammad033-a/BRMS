@@ -85,7 +85,12 @@ const AddProduct = () => {
       return;
     }
 
+<<<<<<< HEAD
     if (!storeId || typeof storeId !== 'string' || storeId.length !== 24) {
+=======
+    // Accept both 24-char Mongo ObjectId and custom string IDs like 'store_...'
+    if (!storeId || typeof storeId !== 'string') {
+>>>>>>> 7e31841 (Initial project upload)
       setError('Invalid store ID. Please try again or refresh the page.');
       setLoading(false);
       return;

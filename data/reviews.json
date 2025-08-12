@@ -223,5 +223,18 @@
     "image": null,
     "vendorResponse": null,
     "responseTimestamp": null
+<<<<<<< HEAD
+=======
+  },
+  {
+    "reviewId": "1755024664951",
+    "rating": 5,
+    "comment": "amazing jacket",
+    "productId": "689b7b24d6c52fb785a7ff2d",
+    "createdAt": "2025-08-12T18:51:04.951Z",
+    "image": null,
+    "vendorResponse": "thankew so much",
+    "responseTimestamp": "2025-08-12T18:52:32.260Z"
+>>>>>>> 7e31841 (Initial project upload)
   }
 ]

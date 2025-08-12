@@ -19,7 +19,13 @@ export default async function handler(req, res) {
     const { storeId } = req.query;
     let products = [];
     if (storeId) {
+<<<<<<< HEAD
       const store = await storesCollection.findOne({ _id: new ObjectId(storeId) });
+=======
+      // Support both Mongo ObjectId _id and string id fields
+      const filter = ObjectId.isValid(storeId) ? { _id: new ObjectId(storeId) } : { id: storeId };
+      const store = await storesCollection.findOne(filter);
+>>>>>>> 7e31841 (Initial project upload)
       products = store && Array.isArray(store.products)
         ? store.products.map(p => ({
             ...p,
@@ -52,8 +58,14 @@ export default async function handler(req, res) {
     }
     // Always assign a unique _id to the product as a string
     const productWithId = { ...product, _id: new ObjectId().toString(), createdAt: new Date().toISOString() };
+<<<<<<< HEAD
     const result = await storesCollection.updateOne(
       { _id: new ObjectId(storeId) },
+=======
+    const filter = ObjectId.isValid(storeId) ? { _id: new ObjectId(storeId) } : { id: storeId };
+    const result = await storesCollection.updateOne(
+      filter,
+>>>>>>> 7e31841 (Initial project upload)
       { $push: { products: productWithId } }
     );
     if (result.modifiedCount === 1) {
@@ -69,8 +81,14 @@ export default async function handler(req, res) {
       return;
     }
     // Fix: Remove product by string _id, not ObjectId
+<<<<<<< HEAD
     const result = await storesCollection.updateOne(
       { _id: new ObjectId(storeId) },
+=======
+    const filter = ObjectId.isValid(storeId) ? { _id: new ObjectId(storeId) } : { id: storeId };
+    const result = await storesCollection.updateOne(
+      filter,
+>>>>>>> 7e31841 (Initial project upload)
       { $pull: { products: { _id: productId } } }
     );
     if (result.modifiedCount === 1) {

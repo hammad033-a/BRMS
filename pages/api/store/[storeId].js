@@ -8,7 +8,12 @@ export default async function handler(req, res) {
   try {
     const client = await clientPromise;
     const db = client.db();
+<<<<<<< HEAD
     const store = await db.collection('stores').findOne({ _id: new ObjectId(storeId) });
+=======
+    const filter = ObjectId.isValid(storeId) ? { _id: new ObjectId(storeId) } : { id: storeId };
+    const store = await db.collection('stores').findOne(filter);
+>>>>>>> 7e31841 (Initial project upload)
     if (!store) return res.status(404).json({ error: 'Store not found' });
     // Return only safe fields
     res.status(200).json({
